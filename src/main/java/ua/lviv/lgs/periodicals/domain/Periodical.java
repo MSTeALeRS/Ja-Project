@@ -1,4 +1,4 @@
-package ua.lviv.lgs.Periodical.domain;
+package ua.lviv.lgs.periodicals.domain;
 
 public class Periodical {
 

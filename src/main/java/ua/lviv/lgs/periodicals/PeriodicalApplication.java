@@ -1,4 +1,4 @@
-package ua.lviv.lgs.Periodical;
+package ua.lviv.lgs.periodicals;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
