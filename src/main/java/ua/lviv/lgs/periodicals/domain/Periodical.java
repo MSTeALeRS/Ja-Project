@@ -1,10 +1,27 @@
 package ua.lviv.lgs.periodicals.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "periodical")
 public class Periodical {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column
     private String name;
+
+    @Column
     private String description;
+
+    @Column
     private Double price;
 
     public Periodical() {
@@ -103,4 +120,3 @@ public class Periodical {
         return "Periodical [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
     }
 }
-
