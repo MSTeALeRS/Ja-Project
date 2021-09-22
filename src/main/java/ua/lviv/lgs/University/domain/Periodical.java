@@ -1,4 +1,4 @@
-package ua.lviv.lgs.periodicals.domain;
+package ua.lviv.lgs.University.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

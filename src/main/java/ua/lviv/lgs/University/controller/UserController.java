@@ -1,4 +1,4 @@
-package ua.lviv.lgs.periodicals.controller;
+package ua.lviv.lgs.University.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,16 +7,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-import ua.lviv.lgs.periodicals.dao.UserRepository;
-import ua.lviv.lgs.periodicals.domain.User;
-import ua.lviv.lgs.periodicals.service.UserService;
+import ua.lviv.lgs.University.domain.Periodical;
+import ua.lviv.lgs.University.domain.Student;
+import ua.lviv.lgs.University.domain.User;
+import ua.lviv.lgs.University.service.StudentService;
+import ua.lviv.lgs.University.service.UserService;
 
 @Controller
 public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private StudentService studentService;
 
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -50,9 +55,15 @@ public class UserController {
     }
 
     @RequestMapping(value ="/home", method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "home";
+    public ModelAndView welcome() {
+        ModelAndView map = new ModelAndView("home");
+        map.addObject("students", studentService.getAllStudents());
+
+        return map;
     }
 
-
+    @RequestMapping(value ="/create-student", method = RequestMethod.GET)
+    public ModelAndView createStudent() {
+        return new ModelAndView("createStudent", "student", new Student());
+    }
 }
