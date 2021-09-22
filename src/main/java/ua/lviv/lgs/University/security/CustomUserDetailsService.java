@@ -1,4 +1,4 @@
-package ua.lviv.lgs.periodicals.security;
+package ua.lviv.lgs.University.security;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import ua.lviv.lgs.periodicals.dao.UserRepository;
-import ua.lviv.lgs.periodicals.domain.User;
+import ua.lviv.lgs.University.dao.UserRepository;
+import ua.lviv.lgs.University.domain.User;
 
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {

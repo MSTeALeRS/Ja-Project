@@ -1,4 +1,4 @@
-package ua.lviv.lgs.periodicals.security;
+package ua.lviv.lgs.University.security;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
-import ua.lviv.lgs.periodicals.domain.User;
+import ua.lviv.lgs.University.domain.User;
 
 public class CustomUserDetails extends User implements UserDetails{
 

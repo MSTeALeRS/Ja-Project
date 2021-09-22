@@ -1,4 +1,4 @@
-package ua.lviv.lgs.periodicals.domain;
+package ua.lviv.lgs.University.domain;
 
 import java.sql.Date;
 

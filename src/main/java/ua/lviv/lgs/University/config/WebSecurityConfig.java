@@ -1,4 +1,4 @@
-package ua.lviv.lgs.periodicals.config;
+package ua.lviv.lgs.University.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import ua.lviv.lgs.periodicals.security.CustomUserDetailsService;
+import ua.lviv.lgs.University.security.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -37,7 +37,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/home").access("hasRole('ROLE_USER')").anyRequest().permitAll().and()
+                .antMatchers("/home").access("hasRole('ROLE_USER')")
+                .antMatchers("/create-periodical").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                .anyRequest().permitAll().and()
 
                 .formLogin().loginPage("/login")
                 .defaultSuccessUrl("/home").usernameParameter("email").passwordParameter("password").and()

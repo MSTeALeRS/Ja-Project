@@ -1,4 +1,4 @@
-package ua.lviv.lgs.periodicals.config;
+package ua.lviv.lgs.University.config;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;

@@ -1,12 +1,12 @@
-package ua.lviv.lgs.periodicals.service;
+package ua.lviv.lgs.University.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import ua.lviv.lgs.periodicals.dao.UserRepository;
-import ua.lviv.lgs.periodicals.domain.User;
-import ua.lviv.lgs.periodicals.domain.UserRole;
+import ua.lviv.lgs.University.dao.UserRepository;
+import ua.lviv.lgs.University.domain.User;
+import ua.lviv.lgs.University.domain.UserRole;
 
 @Service
 public class UserService{
