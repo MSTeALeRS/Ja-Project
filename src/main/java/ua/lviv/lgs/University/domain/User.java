@@ -41,6 +41,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.passwordConfirm= password;
         this.role = role;
     }
 
