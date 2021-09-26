@@ -4,16 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import ua.lviv.lgs.University.domain.Faculty;
 import ua.lviv.lgs.University.domain.Student;
 import ua.lviv.lgs.University.domain.User;
+import ua.lviv.lgs.University.domain.UserRole;
 import ua.lviv.lgs.University.service.StudentService;
+import ua.lviv.lgs.University.service.StudentsDTOHelper;
 import ua.lviv.lgs.University.service.UserService;
+
+import java.io.IOException;
 
 @Controller
 public class UserController {
@@ -24,23 +27,25 @@ public class UserController {
     private StudentService studentService;
 
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+//    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+//    public String registration(Model model) {
+//        model.addAttribute("userForm", new User());
+//
+//        return "registration";
+//    }
 
-        return "registration";
-    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public ModelAndView registration(
+            @RequestParam String email,
+            @RequestParam String firstName,
+            @RequestParam String lastName,
+            @RequestParam String password
 
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
+    ) throws IOException {
+        User userForm = new User(email,firstName, lastName, UserRole.ROLE_USER, password);
         userService.save(userForm);
-
-
-        return "redirect:/home";
+        return new ModelAndView("redirect:/home");
     }
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)

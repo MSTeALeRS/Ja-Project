@@ -1,6 +1,7 @@
 package ua.lviv.lgs.University.service;
 
 import org.springframework.web.multipart.MultipartFile;
+import ua.lviv.lgs.University.domain.Evaluation;
 import ua.lviv.lgs.University.domain.Faculty;
 import ua.lviv.lgs.University.domain.Student;
 
@@ -15,7 +16,7 @@ public class StudentsDTOHelper {
         student.setSurname(surname);
         student.setFaculty(faculty);
         student.setEncodedImage(Base64.getEncoder().encodeToString(file.getBytes()));
-
+        student.setEvaluation(new Evaluation());
         return student;
     }
 }

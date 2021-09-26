@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: stealers
-  Date: 23.09.2021
-  Time: 22:04
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,11 +5,13 @@
 </head>
 <body>
 
-</body><%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+</body>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +25,8 @@
 
     <title>Student</title>
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="${contextPath}/resources/css/bootstrap.min.css"
           rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -43,8 +39,14 @@
     <div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
         <h3 class="w3-bar-item">Menu</h3>
         <a href="/home" class="w3-bar-item w3-button">Home</a>
-        <a href="/create-student" class="w3-bar-item w3-button">Create student</a>
+        <security:authorize access="hasRole('ROLE_ADMIN')">
+            <a href="/create-student" class="w3-bar-item w3-button">Create
+                student</a>
+        </security:authorize>
+
+
         <a href="/evaluations" class="w3-bar-item w3-button">Evaluations</a>
+
     </div>
 
 
@@ -60,7 +62,7 @@
             <c:if test="${pageContext.request.userPrincipal.name != null}">
                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
                     <input type="hidden" name="${_csrf.parameterName}"
-                           value="${_csrf.token}" />
+                           value="${_csrf.token}"/>
                 </form>
                 <h2>
                     Welcome ${pageContext.request.userPrincipal.name} | <a
@@ -69,36 +71,37 @@
             </c:if>
             <div style="display: flex">
 
-                <form:form method="POST" action="${contextPath}/${currentStudent.id}/add-Evaluation" enctype="multipart/form-data">
+                <form:form method="POST" action="${contextPath}/${currentStudent.id}/add-Evaluation"
+                           enctype="multipart/form-data">
                     <table>
                         <tr>
                             <td>English</td>
-                            <td><input type="number" name="english" /></td>
+                            <td><input type="number" name="english"/></td>
                         </tr>
                         <tr>
                             <td>Anatomy</td>
-                            <td><input type="number" name="anatomy" /></td>
+                            <td><input type="number" name="anatomy"/></td>
                         </tr>
                         <tr>
                             <td>Chemestry</td>
-                            <td><input type="number" name="chemestry" /></td>
+                            <td><input type="number" name="chemestry"/></td>
                         </tr>
                         <tr>
                             <td>Biology</td>
-                            <td><input type="number" name="biology" /></td>
+                            <td><input type="number" name="biology"/></td>
                         </tr>
                         <tr>
                             <td>Phisic</td>
-                            <td><input type="number" name="phisic" /></td>
+                            <td><input type="number" name="phisic"/></td>
                         </tr>
 
                         <tr>
-                            <td><input type="submit" value="Submit" /></td>
+                            <td><input type="submit" value="Submit"/></td>
                         </tr>
 
                     </table>
                     <input type="hidden" name="${_csrf.parameterName}"
-                           value="${_csrf.token}" />
+                           value="${_csrf.token}"/>
                 </form:form>
 
             </div>
