@@ -13,12 +13,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>Evaluations</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="${contextPath}/resources/css/bootstrap.min.css"
           rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
 </head>
 <body>
 <div class="container">
@@ -37,7 +39,7 @@
     <div style="margin-left: 10%">
 
         <div class="w3-container w3-teal">
-            <h1>Students</h1>
+            <h1>Evaluations</h1>
         </div>
 
         <div class="w3-container">
@@ -56,25 +58,40 @@
 
 
             <c:if test="${not empty students}">
-                <div style="display: flex; flex-direction: row; flex-wrap: wrap">
-                <c:forEach items="${students}" var="currentStudent">
 
-                    <div class="w3-card-4" style="width: 20%; margin:2%" >
-                        <img
-                                src="data:image/jpg;base64, ${currentStudent.encodedImage}"
-                                alt="Norway" style="width: 100%">
-                        <div class="w3-container w3-center">
-                            <h3>${currentStudent.name}</h3>
-                            <p>${currentStudent.surname}</p>
-                            <p>${currentStudent.faculty}</p>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Faculty</th>
+                            <th scope="col">English</th>
+                            <th scope="col">Anatomy</th>
+                            <th scope="col">Biology</th>
+                            <th scope="col">Phisic</th>
+                            <th scope="col">Chemestry</th>
+                            <th scope="col">SumBall</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                        </div>
-                        <a  href="/studentEvaluation/${currentStudent.id}" class="w3-button w3-block w3-dark-grey"
-                          >Evaluation</a>
-                    </div>
+                        <c:forEach items="${students}" var="students">
+                            <tr>
+                                <th scope="row">${students.id}</th>
+                                <td>${students.name}</td>
+                                <td>${students.faculty}</td>
+                                <td>${students.evaluation.english}</td>
+                                <td>${students.evaluation.anatomy}</td>
+                                <td>${students.evaluation.biology}</td>
+                                <td>${students.evaluation.phisic}</td>
+                                <td>${students.evaluation.chemestry}</td>
+                                <td>${students.evaluation.sumBall}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
 
-                </c:forEach>
-                </div>
+
             </c:if>
         </div>
 

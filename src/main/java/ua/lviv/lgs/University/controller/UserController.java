@@ -5,11 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ua.lviv.lgs.University.domain.Periodical;
 import ua.lviv.lgs.University.domain.Student;
 import ua.lviv.lgs.University.domain.User;
 import ua.lviv.lgs.University.service.StudentService;
@@ -62,8 +62,6 @@ public class UserController {
         return map;
     }
 
-    @RequestMapping(value ="/create-student", method = RequestMethod.GET)
-    public ModelAndView createStudent() {
-        return new ModelAndView("createStudent", "student", new Student());
-    }
+
+
 }
