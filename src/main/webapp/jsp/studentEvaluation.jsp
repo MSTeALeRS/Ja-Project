@@ -1,14 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
 
-</body>
+
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -30,6 +26,23 @@
     <link href="${contextPath}/resources/css/bootstrap.min.css"
           rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script
+            src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+            src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var selItem = localStorage.getItem('locales');
+            $('#locales').val(selItem ? selItem : 'en');
+            $('#locales').change(function() {
+                var selectedOption = $('#locales').val();
+                if (selectedOption) {
+                    window.location.replace('?lang=' + selectedOption);
+                    localStorage.setItem('locales', selectedOption);
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container">
@@ -37,21 +50,33 @@
 
     <!-- Sidebar -->
     <div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
-        <h3 class="w3-bar-item">Menu</h3>
-        <a href="/home" class="w3-bar-item w3-button">Home</a>
+        <h3 class="w3-bar-item"><spring:message code="menu.menu"/> </h3>
+        <a href="/home" class="w3-bar-item w3-button"><spring:message code="menu.home"/></a>
         <security:authorize access="hasRole('ROLE_ADMIN')">
-            <a href="/create-student" class="w3-bar-item w3-button">Create
-                student</a>
+            <a href="/create-student" class="w3-bar-item w3-button"><spring:message code="menu.create"/></a>
         </security:authorize>
-        <a href="/evaluations" class="w3-bar-item w3-button">Evaluations</a>
+
+
+        <a href="/evaluations" class="w3-bar-item w3-button"><spring:message code="menu.evaluatins"/></a>
+        <a href="#" class="w3-bar-item w3-button"  onclick="document.forms['logoutForm'].submit()"><spring:message code="menu.logout"/></a>
     </div>
 
 
     <!-- Page Content -->
     <div style="margin-left: 10%">
 
-        <div class="w3-container w3-teal">
-            <h1>Student</h1>
+        <div class="w3-container w3-teal" style="display:flex; justify-content: space-between">
+            <h1 style="display: block; width: 30%"><spring:message code="menu.student"/> </h1>
+            <div style="width: 30%">
+                <fieldset>
+                    <label><spring:message code="login.choose_language" /></label> <select
+                        id="locales">
+                    <option value="en"><spring:message code='login.english'/></option>
+                    <option value="ua"><spring:message code='login.ukrainian'/></option>
+
+                </select>
+                </fieldset>
+            </div>
         </div>
 
         <div class="w3-container">
@@ -62,8 +87,8 @@
                            value="${_csrf.token}"/>
                 </form>
                 <h2>
-                    Welcome ${pageContext.request.userPrincipal.name} | <a
-                        onclick="document.forms['logoutForm'].submit()">Logout</a>
+                    <spring:message code="menu.hello"/> ${pageContext.request.userPrincipal.name}
+
                 </h2>
             </c:if>
             <div style="display: flex">
@@ -83,7 +108,7 @@
                         <security:authorize access="hasRole('ROLE_ADMIN')">
                             <a href="${currentStudent.id}/addEvaluation" class="w3-button w3-block w3-dark-grey"
 
-                            >add Evaluations</a>
+                            ><spring:message code="menu.addEvaluatin"/></a>
                         </security:authorize>
                     </div>
                 </div>
@@ -102,4 +127,4 @@
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
-</html>
+

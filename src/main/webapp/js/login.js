@@ -5,8 +5,22 @@ switchers.forEach((item) => {
         switchers.forEach((item) =>
             item.parentElement.classList.remove("is-active")
 
+
+
         );
         this.parentElement.classList.add("is-active")
+
+    });
+
+});
+
+switchers.forEach((item) => {
+    item.addEventListener("click", function () {
+        switchers.forEach((item) =>
+            item.parentElement.classList.add("is-pasive")
+
+        );
+        this.parentElement.classList.remove("is-pasive")
 
     });
 

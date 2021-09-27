@@ -286,3 +286,10 @@ body {
     box-shadow: inset 0 0 0 2px #a7e245;
     transform: translateX(30%);
 }
+
+.is-active {
+    opacity: 1;
+}
+.is-pasive {
+    opacity: 0.5;
+}
