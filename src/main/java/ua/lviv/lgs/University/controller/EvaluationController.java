@@ -42,10 +42,10 @@ public class EvaluationController {
             @RequestParam Integer biology,
             @RequestParam Integer phisic
     ) {
-        Evaluation ev = new Evaluation(english,anatomy,chemestry,biology,phisic);
-         Student m = studentService.findById(id);
-         m.setEvaluation(ev);
-         studentService.save(m);
+        Evaluation evaluation = new Evaluation(english,anatomy,chemestry,biology,phisic);
+         Student student = studentService.findById(id);
+        student.setEvaluation(evaluation);
+         studentService.save(student);
         return new ModelAndView("redirect:/home");
     }
 }

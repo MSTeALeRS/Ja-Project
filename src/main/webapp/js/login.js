@@ -14,16 +14,6 @@ switchers.forEach((item) => {
 
 });
 
-switchers.forEach((item) => {
-    item.addEventListener("click", function () {
-        switchers.forEach((item) =>
-            item.parentElement.classList.add("is-pasive")
 
-        );
-        this.parentElement.classList.remove("is-pasive")
-
-    });
-
-});
 
 

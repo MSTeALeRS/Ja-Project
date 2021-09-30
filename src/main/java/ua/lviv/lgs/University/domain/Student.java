@@ -25,7 +25,7 @@ public class Student implements Comparable<Student> {
     }
 
     @Column
-    private String name;
+    private String firstName;
 
     @Column
     private String surname;
@@ -41,16 +41,16 @@ public class Student implements Comparable<Student> {
 
     }
 
-    public Student(String name, String surname, Faculty faculty) {
-        this.name = name;
+    public Student(String firstName, String surname, Faculty faculty) {
+        this.firstName = firstName;
         this.surname = surname;
         this.faculty = faculty;
 
     }
 
-    public Student(Integer id, String name, String surname, Faculty faculty) {
+    public Student(Integer id, String firstName, String surname, Faculty faculty) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
         this.surname = surname;
         this.faculty = faculty;
 
@@ -69,7 +69,7 @@ public class Student implements Comparable<Student> {
     }
 
     public String getName() {
-        return name;
+        return firstName;
     }
 
     public String getSurname() {
@@ -85,7 +85,7 @@ public class Student implements Comparable<Student> {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.firstName = name;
     }
 
     public void setSurname(String surname) {
@@ -103,12 +103,12 @@ public class Student implements Comparable<Student> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(surname, student.surname) && faculty == student.faculty;
+        return Objects.equals(id, student.id) && Objects.equals(firstName, student.firstName) && Objects.equals(surname, student.surname) && faculty == student.faculty;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, faculty);
+        return Objects.hash(id, firstName, surname, faculty);
     }
 
 
@@ -117,7 +117,7 @@ public class Student implements Comparable<Student> {
         return "\nStudent{" +
                 "id=" + id +
                 ", evaluation=" + evaluation +
-                ", name='" + name + '\'' +
+                ", name='" + firstName + '\'' +
                 ", surname='" + surname + '\'' +
                 ", faculty=" + faculty +
                 ", encodedImage='" + encodedImage + '\'' +
