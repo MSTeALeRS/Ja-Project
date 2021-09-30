@@ -48,7 +48,8 @@
 
     <!-- Sidebar -->
     <div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
-        <h3 class="w3-bar-item"><spring:message code="menu.menu"/> </h3>
+        <h3 class="w3-bar-item"><spring:message code="menu.menu"/>
+            <br> <h5 class="w3-bar-item">${pageContext.request.userPrincipal.name}</h5></h3>
         <a href="/home" class="w3-bar-item w3-button"><spring:message code="menu.home"/></a>
         <security:authorize access="hasRole('ROLE_ADMIN')">
             <a href="/create-student" class="w3-bar-item w3-button"><spring:message code="menu.create"/></a>
@@ -63,7 +64,7 @@
     <!-- Page Content -->
     <div style="margin-left: 10%">
 
-        <div class="w3-container w3-teal" style="display:flex; justify-content: space-between">
+        <div class="w3-container " style="display:flex; background-color: #a7e245; justify-content: space-between">
             <h1 style="display: block; width: 30%"><spring:message code="menu.evaluatins"/></h1>
             <div style="width: 30%">
                 <fieldset>
@@ -84,10 +85,7 @@
                     <input type="hidden" name="${_csrf.parameterName}"
                            value="${_csrf.token}"/>
                 </form>
-                <h2>
-                    <spring:message code="menu.hello"/> ${pageContext.request.userPrincipal.name}
 
-                </h2>
             </c:if>
 
 
@@ -97,14 +95,14 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Faculty</th>
-                        <th scope="col">English</th>
-                        <th scope="col">Anatomy</th>
-                        <th scope="col">Biology</th>
-                        <th scope="col">Phisic</th>
-                        <th scope="col">Chemestry</th>
-                        <th scope="col">SumBall</th>
+                        <th scope="col"><spring:message code="add.name"/> </th>
+                        <th scope="col"><spring:message code="add.faculty"/></th>
+                        <th scope="col"><spring:message code="classes.english"/></th>
+                        <th scope="col"><spring:message code="classes.anatomy"/></th>
+                        <th scope="col"><spring:message code="classes.biology"/></th>
+                        <th scope="col"><spring:message code="classes.phisic"/></th>
+                        <th scope="col"><spring:message code="classes.chemestry"/></th>
+                        <th scope="col"><spring:message code="classes.sumball"/></th>
                     </tr>
                     </thead>
                     <tbody>
