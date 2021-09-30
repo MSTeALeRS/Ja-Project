@@ -50,7 +50,8 @@
 
     <!-- Sidebar -->
     <div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
-        <h3 class="w3-bar-item"><spring:message code="menu.menu"/> </h3>
+        <h3 class="w3-bar-item"><spring:message code="menu.menu"/>
+            <br> <h5 class="w3-bar-item">${pageContext.request.userPrincipal.name}</h5></h3>
         <a href="/home" class="w3-bar-item w3-button"><spring:message code="menu.home"/></a>
         <security:authorize access="hasRole('ROLE_ADMIN')">
             <a href="/create-student" class="w3-bar-item w3-button"><spring:message code="menu.create"/></a>
@@ -65,7 +66,7 @@
     <!-- Page Content -->
     <div style="margin-left: 10%">
 
-        <div class="w3-container w3-teal" style="display:flex; justify-content: space-between">
+        <div class="w3-container " style="display:flex; justify-content: space-between; background-color: #a7e245;">
             <h1 style="display: block; width: 30%"><spring:message code="menu.student"/> </h1>
             <div style="width: 30%">
                 <fieldset>
@@ -86,10 +87,7 @@
                     <input type="hidden" name="${_csrf.parameterName}"
                            value="${_csrf.token}"/>
                 </form>
-                <h2>
-                    <spring:message code="menu.hello"/> ${pageContext.request.userPrincipal.name}
 
-                </h2>
             </c:if>
             <div style="display: flex">
                 <div class="w3-card-4" style="width: 25%; margin:2%">
