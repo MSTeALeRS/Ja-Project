@@ -39,7 +39,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var selItem = localStorage.getItem('locales');
-            $('#locales').val(selItem ? selItem : 'en');
+            $('#locales').val(selItem ? selItem : 'ua');
             $('#locales').change(function() {
                 var selectedOption = $('#locales').val();
                 if (selectedOption) {
