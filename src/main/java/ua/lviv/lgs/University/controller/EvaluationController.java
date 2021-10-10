@@ -22,8 +22,7 @@ import java.io.IOException;
 public class EvaluationController {
     @Autowired
     private StudentService studentService;
-    @Autowired
-    private EvaluationService evaluationService;
+
 
     @RequestMapping(value ="/studentEvaluation/{id}/addEvaluation", method = RequestMethod.GET)
     public ModelAndView addEvaluation(@PathVariable Integer id) {
@@ -45,7 +44,7 @@ public class EvaluationController {
         Evaluation evaluation = new Evaluation(english,anatomy,chemestry,biology,phisic);
          Student student = studentService.findById(id);
         student.setEvaluation(evaluation);
-         studentService.save(student);
+         studentService.save(student, student.getFaculty().getId());
         return new ModelAndView("redirect:/home");
     }
 }

@@ -14,11 +14,15 @@ import ua.lviv.lgs.University.domain.Student;
 @Service
 public class StudentService {
     private Logger logger = LoggerFactory.getLogger(StudentService.class);
+
+    @Autowired
+    FacultysService facultysService;
     @Autowired
     private StudentRepository studentRepository;
 
-    public Student save(Student student){
+    public Student save(Student student, Integer id){
         logger.info("add new Student {} : " + student);
+        student.setFacultys(facultysService.findById(id));
         return studentRepository.save(student);
     }
 

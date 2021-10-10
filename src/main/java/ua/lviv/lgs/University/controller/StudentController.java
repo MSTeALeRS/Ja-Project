@@ -5,16 +5,15 @@ package ua.lviv.lgs.University.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
 import ua.lviv.lgs.University.domain.Faculty;
+import ua.lviv.lgs.University.domain.Facultys;
 import ua.lviv.lgs.University.domain.Student;
+import ua.lviv.lgs.University.service.FacultysService;
 import ua.lviv.lgs.University.service.StudentService;
 import ua.lviv.lgs.University.service.StudentsDTOHelper;
 
@@ -24,22 +23,30 @@ import java.io.IOException;
 public class StudentController {
 
     @Autowired
-    private StudentService facultyService;
+    private StudentService studentService;
 
-    @RequestMapping(value ="/create-student", method = RequestMethod.GET)
-    public ModelAndView createStudent() {
+    @Autowired
+    private FacultysService facultysService;
+    @RequestMapping(value ="/facultys/{id}/create-student", method = RequestMethod.GET)
+    public ModelAndView createStudent(@PathVariable Integer id) {
 
-        return new ModelAndView("createStudent");
+        ModelAndView map = new ModelAndView("createStudent");
+        map.addObject("facultyRole",  facultysService.findById(id));
+
+        return map;
     }
 
-    @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
+    @RequestMapping(value = "{id}/addStudent", method = RequestMethod.POST)
     public ModelAndView createStudent(
+            @PathVariable Integer id,
             @RequestParam MultipartFile image,
             @RequestParam String name,
-            @RequestParam String surname,
-            @RequestParam Faculty faculty
+            @RequestParam String surname
+
             ) throws IOException {
-        facultyService.save(StudentsDTOHelper.createEntity(image, name, surname, faculty));
+        studentService.save(StudentsDTOHelper.createEntity(image, name, surname), id);
+
+
         return new ModelAndView("redirect:/home");
     }
 

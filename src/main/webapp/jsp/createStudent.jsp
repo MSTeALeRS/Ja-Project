@@ -75,7 +75,8 @@
             </c:if>
 
 
-            <form:form method="POST" action="${contextPath}/addStudent" enctype="multipart/form-data">
+            <form:form method="POST" action="${contextPath}/${facultyRole.id}/addStudent"
+                       enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td><spring:message code="add.name"/></td>
@@ -85,10 +86,7 @@
                         <td><spring:message code="add.surname"/></td>
                         <td><input type="text" name="surname"/></td>
                     </tr>
-                    <tr>
-                        <td><spring:message code="add.faculty"/></td>
-                        <td><input type="text" name="faculty"/></td>
-                    </tr>
+
                     <tr>
                         <td><spring:message code="add.selectFoto"/></td>
                         <td><input type="file" name="image"/></td>

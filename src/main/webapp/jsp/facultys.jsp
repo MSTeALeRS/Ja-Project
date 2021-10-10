@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -16,14 +17,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Evaluations</title>
+    <title>Home</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="${contextPath}/resources/css/bootstrap.min.css"
           rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
     <script
             src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script
@@ -58,14 +58,16 @@
 
         <a href="/evaluations" class="w3-bar-item w3-button"><spring:message code="menu.evaluatins"/></a>
         <a href="#" class="w3-bar-item w3-button"  onclick="document.forms['logoutForm'].submit()"><spring:message code="menu.logout"/></a>
+        <a href="/facultys" class="w3-bar-item w3-button">Facultys</a>
+        <a href="/addFacultys" class="w3-bar-item w3-button">addFacultys</a>
     </div>
 
 
     <!-- Page Content -->
-    <div style="margin-left: 10%">
+    <div style="margin-left: 10%; ">
 
-        <div class="w3-container " style="display:flex; background-color: #a7e245; justify-content: space-between">
-            <h1 style="display: block; width: 30%"><spring:message code="menu.evaluatins"/></h1>
+        <div class="w3-container" style="display:flex; justify-content: space-between; background-color: #a7e245;">
+            <h1 style="display: block; width: 30%"><spring:message code="menu.students"/></h1>
             <div style="width: 30%">
                 <fieldset>
                     <label><spring:message code="login.choose_language" /></label> <select
@@ -89,41 +91,27 @@
             </c:if>
 
 
-            <c:if test="${not empty students}">
 
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col"><spring:message code="add.name"/> </th>
-                        <th scope="col"><spring:message code="add.faculty"/></th>
-                        <th scope="col"><spring:message code="classes.english"/></th>
-                        <th scope="col"><spring:message code="classes.anatomy"/></th>
-                        <th scope="col"><spring:message code="classes.biology"/></th>
-                        <th scope="col"><spring:message code="classes.phisic"/></th>
-                        <th scope="col"><spring:message code="classes.chemestry"/></th>
-                        <th scope="col"><spring:message code="classes.sumball"/></th>
-                    </tr>
-                    </thead>
-                    <tbody>
+            <c:if test="${not empty facultyRoles}">
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+                    <c:forEach items="${facultyRoles}" var="facultyRole">
 
-                    <c:forEach items="${students}" var="students">
-                        <tr>
-                            <th scope="row">${students.id}</th>
-                            <td>${students.name}</td>
-                            <td>${students.facultys.facultyName}</td>
-                            <td>${students.evaluation.english}</td>
-                            <td>${students.evaluation.anatomy}</td>
-                            <td>${students.evaluation.biology}</td>
-                            <td>${students.evaluation.phisic}</td>
-                            <td>${students.evaluation.chemestry}</td>
-                            <td>${students.evaluation.sumBall}</td>
-                        </tr>
+                        <div class="w3-card-4" style="width: 20%; margin:2%">
+
+                            <div class="w3-container w3-center">
+                                <h3>${facultyRole.facultyName}</h3>
+
+                            </div>
+<%--                            <div class="w3-container w3-center">--%>
+<%--                                <h3>${facultyRole.id}</h3>--%>
+
+<%--                            </div>--%>
+                            <a href="/facultys/${facultyRole.id}/create-student/" class="w3-button w3-block w3-dark-grey"
+                            > ADD Student</a>
+                        </div>
+
                     </c:forEach>
-                    </tbody>
-                </table>
-
-
+                </div>
             </c:if>
         </div>
 

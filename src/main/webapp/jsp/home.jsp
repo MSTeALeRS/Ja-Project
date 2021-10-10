@@ -58,6 +58,7 @@
 
         <a href="/evaluations" class="w3-bar-item w3-button"><spring:message code="menu.evaluatins"/></a>
         <a href="#" class="w3-bar-item w3-button"  onclick="document.forms['logoutForm'].submit()"><spring:message code="menu.logout"/></a>
+        <a href="/facultys" class="w3-bar-item w3-button">Facultys</a>
     </div>
 
 
@@ -103,7 +104,7 @@
                             <div class="w3-container w3-center">
                                 <h3>${currentStudent.name}</h3>
                                 <p>${currentStudent.surname}</p>
-                                <p>${currentStudent.faculty}</p>
+                                <p>${currentStudent.facultys.facultyName}</p>
 
                             </div>
                             <a href="/studentEvaluation/${currentStudent.id}" class="w3-button w3-block w3-dark-grey"

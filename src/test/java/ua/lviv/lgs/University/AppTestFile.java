@@ -104,7 +104,7 @@ public class AppTestFile {
         student.setEncodedImage("1");
         student.setFaculty(Faculty.STOMAT);
 
-        studentService.save(student);
+        studentService.save(student, student.getFaculty().getId());
 
         students = studentRepository.findAll();
         assertThat(students, hasSize(1));

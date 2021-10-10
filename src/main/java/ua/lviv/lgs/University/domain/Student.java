@@ -31,8 +31,9 @@ public class Student implements Comparable<Student> {
     private String surname;
 
 
-    @Enumerated(EnumType.STRING)
-    private Faculty faculty;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "facultys_id", referencedColumnName = "id")
+    private Facultys facultys;
 
     @Lob
     private String encodedImage;
@@ -41,18 +42,34 @@ public class Student implements Comparable<Student> {
 
     }
 
-    public Student(String firstName, String surname, Faculty faculty) {
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public Facultys getFacultys() {
+        return facultys;
+    }
+
+    public void setFacultys(Facultys facultys) {
+        this.facultys = facultys;
+    }
+
+    public Student(String firstName, String surname, Facultys facultys) {
         this.firstName = firstName;
         this.surname = surname;
-        this.faculty = faculty;
+        this.facultys = facultys;
 
     }
 
-    public Student(Integer id, String firstName, String surname, Faculty faculty) {
+    public Student(Integer id, String firstName, String surname, Facultys faculty) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
-        this.faculty = faculty;
+        this.facultys = facultys;
 
     }
 
@@ -76,8 +93,8 @@ public class Student implements Comparable<Student> {
         return surname;
     }
 
-    public Faculty getFaculty() {
-        return faculty;
+    public Facultys getFaculty() {
+        return facultys;
     }
 
     public void setId(Integer id) {
@@ -93,7 +110,7 @@ public class Student implements Comparable<Student> {
     }
 
     public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
+        this.facultys = facultys;
     }
 
 
@@ -103,12 +120,12 @@ public class Student implements Comparable<Student> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(id, student.id) && Objects.equals(firstName, student.firstName) && Objects.equals(surname, student.surname) && faculty == student.faculty;
+        return Objects.equals(id, student.id) && Objects.equals(firstName, student.firstName) && Objects.equals(surname, student.surname) && facultys == student.facultys;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, surname, faculty);
+        return Objects.hash(id, firstName, surname, facultys);
     }
 
 
@@ -119,7 +136,7 @@ public class Student implements Comparable<Student> {
                 ", evaluation=" + evaluation +
                 ", name='" + firstName + '\'' +
                 ", surname='" + surname + '\'' +
-                ", faculty=" + faculty +
+                ", faculty=" + facultys +
                 ", encodedImage='" + encodedImage + '\'' +
                 '}';
     }

@@ -97,7 +97,7 @@
                     <div class="w3-container w3-center">
                         <h3>${currentStudent.name}</h3>
                         <p>${currentStudent.surname}</p>
-                        <p>${currentStudent.faculty}</p>
+                        <p>${currentStudent.facultys.facultyName}</p>
                     </div>
                     <div style="display: flex">
                         <a href="/home" class="w3-button w3-block w3-dark-grey"
